@@ -14,6 +14,10 @@ contract Hcoin is Initializable, ERC20Upgradeable, ERC20PermitUpgradeable, Ownab
         _disableInitializers();
     }
 
+    function decimals() public view virtual override returns (uint8) {
+        return 0;
+    }
+
     function initialize(address initialOwner) initializer public {
         __ERC20_init("Hcoin", "HCN");
         __ERC20Permit_init("Hcoin");
