@@ -7,6 +7,11 @@ import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 
 abstract contract HcoinLogic is ERC20PermitUpgradeable, OwnableUpgradeable, PausableUpgradeable {
     
+
+    function decimals() public view virtual override returns (uint8) {
+        return 0;
+    }
+
     // ERC通用ABI
     function __HcoinLogic_init() internal onlyInitializing {
 
