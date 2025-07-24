@@ -57,6 +57,10 @@ abstract contract HcoinLogic is ERC20PermitUpgradeable, OwnableUpgradeable, Paus
         require(EvidenceFee > 0, "Evidence was paused");
         require(evidenceUUID != 0x0, "Evidence UUID must not zero");
         require(balanceOf(msg.sender) >= EvidenceFee, "Insufficient balance");
+        require((evidence[evidenceUUID].EvidenceUUID).length == 0, "Evidence already exists");
+        require(keccak256(abi.encodePacked(hash)) != keccak256(abi.encodePacked("")), "Hash must not be empty");
+
+
         evidence[evidenceUUID] = Evidence({
             EvidenceUUID: evidenceUUID,
             DataHash: hash,
