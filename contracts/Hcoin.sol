@@ -22,7 +22,6 @@ contract Hcoin is Initializable, ERC20Upgradeable, ERC20PermitUpgradeable, Ownab
         __ERC20_init("Hcoin", "HCN");
         __ERC20Permit_init("Hcoin");
         __Ownable_init(initialOwner);
-        __UUPSUpgradeable_init();
         __HcoinLogic_init();
     }
 

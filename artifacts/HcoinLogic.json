@@ -50,15 +50,14 @@
 		"gasEstimates": null,
 		"methodIdentifiers": {
 			"DOMAIN_SEPARATOR()": "3644e515",
-			"EvidenceFee()": "04e0c7f4",
 			"allowance(address,address)": "dd62ed3e",
 			"approve(address,uint256)": "095ea7b3",
 			"balanceOf(address)": "70a08231",
 			"burn(uint256)": "42966c68",
+			"claim()": "4e71d92d",
 			"decimals()": "313ce567",
 			"eip712Domain()": "84b0196e",
-			"getEvidence(bytes16)": "e7376922",
-			"mint(address,uint256)": "40c10f19",
+			"mint(uint256)": "a0712d68",
 			"name()": "06fdde03",
 			"nonces(address)": "7ecebe00",
 			"owner()": "8da5cb5b",
@@ -66,8 +65,7 @@
 			"paused()": "5c975abb",
 			"permit(address,address,uint256,uint256,uint8,bytes32,bytes32)": "d505accf",
 			"renounceOwnership()": "715018a6",
-			"setEvidenceFee(uint256)": "1f99c355",
-			"submitEvidence(bytes16,string)": "f7bf0fc3",
+			"setClaimTokensLimit(uint256)": "528cc615",
 			"symbol()": "95d89b41",
 			"totalSupply()": "18160ddd",
 			"transfer(address,uint256)": "a9059cbb",
@@ -293,33 +291,27 @@
 		},
 		{
 			"anonymous": false,
-			"inputs": [],
-			"name": "EIP712DomainChanged",
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "user",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
+				}
+			],
+			"name": "Claimed",
 			"type": "event"
 		},
 		{
 			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": true,
-					"internalType": "bytes16",
-					"name": "evidenceUUID",
-					"type": "bytes16"
-				},
-				{
-					"indexed": true,
-					"internalType": "string",
-					"name": "dataHash",
-					"type": "string"
-				},
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				}
-			],
-			"name": "EvidenceSubmitted",
+			"inputs": [],
+			"name": "EIP712DomainChanged",
 			"type": "event"
 		},
 		{
@@ -419,19 +411,6 @@
 			"type": "function"
 		},
 		{
-			"inputs": [],
-			"name": "EvidenceFee",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
 			"inputs": [
 				{
 					"internalType": "address",
@@ -513,6 +492,13 @@
 		},
 		{
 			"inputs": [],
+			"name": "claim",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
 			"name": "decimals",
 			"outputs": [
 				{
@@ -569,52 +555,6 @@
 		},
 		{
 			"inputs": [
-				{
-					"internalType": "bytes16",
-					"name": "evidenceUUID",
-					"type": "bytes16"
-				}
-			],
-			"name": "getEvidence",
-			"outputs": [
-				{
-					"components": [
-						{
-							"internalType": "bytes16",
-							"name": "EvidenceUUID",
-							"type": "bytes16"
-						},
-						{
-							"internalType": "string",
-							"name": "DataHash",
-							"type": "string"
-						},
-						{
-							"internalType": "address",
-							"name": "Owner",
-							"type": "address"
-						},
-						{
-							"internalType": "uint256",
-							"name": "Timestamp",
-							"type": "uint256"
-						}
-					],
-					"internalType": "struct HcoinLogic.Evidence",
-					"name": "",
-					"type": "tuple"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
 				{
 					"internalType": "uint256",
 					"name": "amount",
@@ -745,29 +685,11 @@
 			"inputs": [
 				{
 					"internalType": "uint256",
-					"name": "fee",
+					"name": "limit",
 					"type": "uint256"
 				}
 			],
-			"name": "setEvidenceFee",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "bytes16",
-					"name": "evidenceUUID",
-					"type": "bytes16"
-				},
-				{
-					"internalType": "string",
-					"name": "hash",
-					"type": "string"
-				}
-			],
-			"name": "submitEvidence",
+			"name": "setClaimTokensLimit",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
